@@ -8,12 +8,20 @@ raise "file name required" unless out_file
 
 FileUtils.mkdir_p(out_file)
 
-10000.times do |n|
-  File.open("#{out_file}/#{n}", 'w') do |f|
-    $stdout = f
-    puts "Test run #{n}"
-    srand(n)
-    run_game
-    puts "End test run #{n}"
+num_examples = 10000
+num_children = 2
+
+num_children.times do |child_idx|
+  fork do
+    num_examples.times do |n|
+      next unless n % num_children == child_idx
+      File.open("#{out_file}/#{n}", 'w') do |f|
+        $stdout = f
+        srand(n)
+        run_game
+      end
+    end
   end
 end
+
+Process.waitall
