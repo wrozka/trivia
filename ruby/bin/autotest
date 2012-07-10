@@ -1,0 +1,2 @@
+watch('lib/(.*)\.rb') { system("./bin/test") }
+watch('bin/(.*)') { system("./bin/test") }
