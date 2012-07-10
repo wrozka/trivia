@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+load File.expand_path('../trivia', __FILE__)
+
+out_file = ARGV[0]
+raise "file name required" unless out_file
+
+FileUtils.mkdir_p(out_file)
+
+10000.times do |n|
+  File.open("#{out_file}/#{n}", 'w') do |f|
+    $stdout = f
+    puts "Test run #{n}"
+    srand(n)
+    run_game
+    puts "End test run #{n}"
+  end
+end

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./bin/master_runner test.out
+diff golden_master.out test.out | diffstat -C
