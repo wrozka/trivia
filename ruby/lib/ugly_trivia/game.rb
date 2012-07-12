@@ -53,21 +53,21 @@ module UglyTrivia
     end
 
     def roll(roll)
-      puts "#{current_player} is the current player"
+      puts "#{current_player_name} is the current player"
       puts "They have rolled a #{roll}"
 
       if in_penalty_box?
         if roll.odd?
           @is_getting_out_of_penalty_box = true
 
-          puts "#{current_player} is getting out of the penalty box"
+          puts "#{current_player_name} is getting out of the penalty box"
           self.current_player_place += roll
 
-          puts "#{current_player}'s new location is #{current_player_place}"
+          puts "#{current_player_name}'s new location is #{current_player_place}"
           puts "The category is #{current_category}"
           ask_question
         else
-          puts "#{current_player} is not getting out of the penalty box"
+          puts "#{current_player_name} is not getting out of the penalty box"
           @is_getting_out_of_penalty_box = false
         end
 
@@ -75,7 +75,7 @@ module UglyTrivia
 
         self.current_player_place += roll
 
-        puts "#{current_player}'s new location is #{current_player_place}"
+        puts "#{current_player_name}'s new location is #{current_player_place}"
         puts "The category is #{current_category}"
         ask_question
       end
@@ -97,6 +97,10 @@ module UglyTrivia
       @players[@current_player_index].purse = new_purse
     end
 
+    def current_player_name
+      @players[@current_player_index].name
+    end
+
     private
 
     def ask_question
@@ -110,10 +114,6 @@ module UglyTrivia
       return 'Rock'
     end
 
-    def current_player
-      @players[@current_player_index].name
-    end
-
     def in_penalty_box?
       @in_penalty_box[@current_player_index]
     end
@@ -125,7 +125,7 @@ module UglyTrivia
         if @is_getting_out_of_penalty_box
           puts 'Answer was correct!!!!'
           self.current_player_purse += 1
-          puts "#{current_player} now has #{current_player_purse} Gold Coins."
+          puts "#{current_player_name} now has #{current_player_purse} Gold Coins."
 
           winner = did_player_win()
           @current_player_index += 1
@@ -144,7 +144,7 @@ module UglyTrivia
 
         puts "Answer was corrent!!!!"
         self.current_player_purse += 1
-        puts "#{current_player} now has #{current_player_purse} Gold Coins."
+        puts "#{current_player_name} now has #{current_player_purse} Gold Coins."
 
         winner = did_player_win
         @current_player_index += 1
@@ -156,7 +156,7 @@ module UglyTrivia
 
     def wrong_answer
       puts 'Question was incorrectly answered'
-      puts "#{current_player} was sent to the penalty box"
+      puts "#{current_player_name} was sent to the penalty box"
       @in_penalty_box[@current_player_index] = true
 
       @current_player_index += 1
