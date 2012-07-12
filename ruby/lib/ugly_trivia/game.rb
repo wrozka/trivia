@@ -1,5 +1,7 @@
 module UglyTrivia
   class Game
+    QUESTIONS_COUNT = 50
+
     def  initialize
       @players = []
       @places = Array.new(6, 0)
@@ -14,7 +16,7 @@ module UglyTrivia
       @current_player = 0
       @is_getting_out_of_penalty_box = false
 
-      50.times do |i|
+      QUESTIONS_COUNT.times do |i|
         @pop_questions.push "Pop Question #{i}"
         @science_questions.push "Science Question #{i}"
         @sports_questions.push "Sports Question #{i}"
