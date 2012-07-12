@@ -59,8 +59,8 @@ module UglyTrivia
           @is_getting_out_of_penalty_box = true
 
           puts "#{@players[@current_player]} is getting out of the penalty box"
-          @places[@current_player] = @places[@current_player] + roll
-          @places[@current_player] = @places[@current_player] - 12 if @places[@current_player] > 11
+          set_player_place @places[@current_player] + roll
+          set_player_place @places[@current_player] - 12 if @places[@current_player] > 11
 
           puts "#{@players[@current_player]}'s new location is #{@places[@current_player]}"
           puts "The category is #{current_category}"
@@ -72,8 +72,8 @@ module UglyTrivia
 
       else
 
-        @places[@current_player] = @places[@current_player] + roll
-        @places[@current_player] = @places[@current_player] - 12 if @places[@current_player] > 11
+        set_player_place @places[@current_player] + roll
+        set_player_place @places[@current_player] - 12 if @places[@current_player] > 11
 
         puts "#{@players[@current_player]}'s new location is #{@places[@current_player]}"
         puts "The category is #{current_category}"
@@ -82,6 +82,10 @@ module UglyTrivia
     end
 
   private
+
+  def set_player_place(place)
+    @places[@current_player] = place
+  end
 
     def ask_question
       puts @questions[current_category].shift
