@@ -81,6 +81,10 @@ module UglyTrivia
       end
     end
 
+    def current_player
+      @players[@current_player_index]
+    end
+
     def current_player_place=(place)
       @places[@current_player_index] = place % 12
     end
@@ -90,15 +94,15 @@ module UglyTrivia
     end
 
     def current_player_purse
-      @players[@current_player_index].purse
+      current_player.purse
     end
 
     def current_player_purse=(new_purse)
-      @players[@current_player_index].purse = new_purse
+      current_player.purse = new_purse
     end
 
     def current_player_name
-      @players[@current_player_index].name
+      current_player.name
     end
 
     private
