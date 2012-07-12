@@ -1,6 +1,7 @@
 module UglyTrivia
   class Game
     QUESTIONS_COUNT = 50
+    MIN_PLAYERS = 2
 
     def  initialize
       @players = []
@@ -30,7 +31,7 @@ module UglyTrivia
     end
 
     def is_playable?
-      how_many_players >= 2
+      how_many_players >= MIN_PLAYERS
     end
 
     def add(player_name)
