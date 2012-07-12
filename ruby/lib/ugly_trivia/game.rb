@@ -59,10 +59,10 @@ module UglyTrivia
           @is_getting_out_of_penalty_box = true
 
           puts "#{@players[@current_player]} is getting out of the penalty box"
-          self.current_player_place = @places[@current_player] + roll
-          self.current_player_place = @places[@current_player] - 12 if @places[@current_player] > 11
+          self.current_player_place = current_player_place + roll
+          self.current_player_place = current_player_place - 12 if current_player_place > 11
 
-          puts "#{@players[@current_player]}'s new location is #{@places[@current_player]}"
+          puts "#{@players[@current_player]}'s new location is #{current_player_place}"
           puts "The category is #{current_category}"
           ask_question
         else
@@ -72,10 +72,10 @@ module UglyTrivia
 
       else
 
-        self.current_player_place = @places[@current_player] + roll
-        self.current_player_place = @places[@current_player] - 12 if @places[@current_player] > 11
+        self.current_player_place = current_player_place + roll
+        self.current_player_place = current_player_place - 12 if current_player_place > 11
 
-        puts "#{@players[@current_player]}'s new location is #{@places[@current_player]}"
+        puts "#{@players[@current_player]}'s new location is #{current_player_place}"
         puts "The category is #{current_category}"
         ask_question
       end
@@ -87,12 +87,16 @@ module UglyTrivia
     @places[@current_player] = place
   end
 
+  def current_player_place
+    @places[@current_player]
+  end
+
     def ask_question
       puts @questions[current_category].shift
     end
 
     def current_category
-      player_place = @places[@current_player]
+      player_place = current_player_place
       return 'Pop' if [0, 4, 8].include?(player_place)
       return 'Science' if [1, 5, 9].include?(player_place)
       return 'Sports' if [2, 6, 10].include?(player_place)
