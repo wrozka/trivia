@@ -17,15 +17,15 @@ module UglyTrivia
       @is_getting_out_of_penalty_box = false
 
       QUESTIONS_COUNT.times do |i|
-        @pop_questions.push "Pop Question #{i}"
-        @science_questions.push "Science Question #{i}"
-        @sports_questions.push "Sports Question #{i}"
-        @rock_questions.push create_rock_question(i)
+        @pop_questions.push create_question("Pop", i)
+        @science_questions.push create_question("Science", i)
+        @sports_questions.push create_question("Sports", i)
+        @rock_questions.push create_question("Rock", i)
       end
     end
 
-    def create_rock_question(index)
-      "Rock Question #{index}"
+    def create_question(category, index)
+      "#{category} Question #{index}"
     end
 
     def is_playable?
