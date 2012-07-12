@@ -54,7 +54,7 @@ module UglyTrivia
       puts "#{current_player} is the current player"
       puts "They have rolled a #{roll}"
 
-      if @in_penalty_box[@current_player]
+      if in_penalty_box?
         if roll % 2 != 0
           @is_getting_out_of_penalty_box = true
 
@@ -104,10 +104,14 @@ module UglyTrivia
       @players[@current_player]
     end
 
+    def in_penalty_box?
+      @in_penalty_box[@current_player]
+    end
+
     public
 
     def was_correctly_answered
-      if @in_penalty_box[@current_player]
+      if in_penalty_box?
         if @is_getting_out_of_penalty_box
           puts 'Answer was correct!!!!'
           @purses[@current_player] += 1
