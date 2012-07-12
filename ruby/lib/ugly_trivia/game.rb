@@ -1,4 +1,7 @@
 module UglyTrivia
+  class Player < Struct.new(:name)
+  end
+
   class Game
     QUESTIONS_COUNT = 50
     MIN_PLAYERS = 2
@@ -35,7 +38,7 @@ module UglyTrivia
     end
 
     def add(player_name)
-      @players.push player_name
+      @players.push Player.new(player_name)
       @places[how_many_players] = 0
       @purses[how_many_players] = 0
       @in_penalty_box[how_many_players] = false
@@ -101,7 +104,7 @@ module UglyTrivia
     end
 
     def current_player
-      @players[@current_player]
+      @players[@current_player].name
     end
 
     def in_penalty_box?
