@@ -88,9 +88,10 @@ module UglyTrivia
     end
 
     def current_category
-      return 'Pop' if [0, 4, 8].include?(@places[@current_player])
-      return 'Science' if [1, 5, 9].include?(@places[@current_player])
-      return 'Sports' if [2, 6, 10].include?(@places[@current_player])
+      player_place = @places[@current_player]
+      return 'Pop' if [0, 4, 8].include?(player_place)
+      return 'Science' if [1, 5, 9].include?(player_place)
+      return 'Sports' if [2, 6, 10].include?(player_place)
       return 'Rock'
     end
 
