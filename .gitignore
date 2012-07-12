@@ -2,5 +2,6 @@ scala/.idea/
 scala/scala.iml
 scala/out/
 *.class
+*.swp
 golden_master.out
 test.out
