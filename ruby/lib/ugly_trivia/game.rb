@@ -13,14 +13,20 @@ module UglyTrivia
       @sports_questions = []
       @rock_questions = []
 
+      @questions = {
+        "Pop" => @pop_questions,
+        "Science" => @science_questions,
+        "Sports" => @sports_questions,
+        "Rock" => @rock_questions
+      }
+
       @current_player = 0
       @is_getting_out_of_penalty_box = false
 
       QUESTIONS_COUNT.times do |i|
-        @pop_questions.push create_question("Pop", i)
-        @science_questions.push create_question("Science", i)
-        @sports_questions.push create_question("Sports", i)
-        @rock_questions.push create_question("Rock", i)
+        @questions.each do |category, questions|
+          questions.push(create_question(category, i))
+        end
       end
     end
 
