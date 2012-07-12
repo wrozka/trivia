@@ -8,16 +8,11 @@ module UglyTrivia
       @purses = Array.new(6, 0)
       @in_penalty_box = Array.new(6, 0)
 
-      @pop_questions = []
-      @science_questions = []
-      @sports_questions = []
-      @rock_questions = []
-
       @questions = {
-        "Pop" => @pop_questions,
-        "Science" => @science_questions,
-        "Sports" => @sports_questions,
-        "Rock" => @rock_questions
+        "Pop" => [],
+        "Science" => [],
+        "Sports" => [],
+        "Rock" => []
       }
 
       @current_player = 0
@@ -88,10 +83,7 @@ module UglyTrivia
   private
 
     def ask_question
-      puts @pop_questions.shift if current_category == 'Pop'
-      puts @science_questions.shift if current_category == 'Science'
-      puts @sports_questions.shift if current_category == 'Sports'
-      puts @rock_questions.shift if current_category == 'Rock'
+      puts @questions[current_category].shift
     end
 
     def current_category
