@@ -1,5 +1,5 @@
 module UglyTrivia
-  class Player < Struct.new(:name)
+  class Player < Struct.new(:name, :purse)
   end
 
   class Game
@@ -38,9 +38,9 @@ module UglyTrivia
     end
 
     def add(player_name)
-      @players.push Player.new(player_name)
+      player = Player.new(player_name, 0)
+      @players.push player
       @places[how_many_players] = 0
-      @purses[how_many_players] = 0
       @in_penalty_box[how_many_players] = false
 
       puts "#{player_name} was added"
@@ -91,11 +91,11 @@ module UglyTrivia
     end
 
     def current_player_purse
-      @purses[@current_player]
+      @players[@current_player].purse
     end
 
     def current_player_purse=(new_purse)
-      @purses[@current_player] = new_purse
+      @players[@current_player].purse = new_purse
     end
 
     private
